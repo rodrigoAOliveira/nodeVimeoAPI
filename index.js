@@ -1,19 +1,29 @@
-var express = require('express');
-var app = express();
-var multer = require('multer')
-var upload = multer({ dest: 'uploads/' })
-const vimeoUpload = require('./upload')
-app.set('view engine', 'ejs');
+
+var express = require('express')
+var app = express()
+var fileUpload = require('express-fileupload')
+const upload = require('./upload')
+app.set('view engine', 'ejs')
+app.use(fileUpload())
 
 app.get('/', function (req, res) {
   res.render('index')
-});
+})
 
-app.post('/upload', upload.single('file'), function (req, res, next) {
-  console.log(req.file)
-  vimeoUpload(req.file.filename)
+app.post('/upload', function (req, res, next) {
+  const file = req.files.file
+  file.mv('./tmp/' + file.name)
+
+  upload('./tmp/' + file.name,
+    function (uri) {
+      res.send('uri: ' + uri)
+    },
+    function (error) {
+      res.send('error: ' + error)
+    }
+  )
 })
 
 app.listen(3000, function () {
-  console.log("listen 3000");
+  console.log('listen 3000')
 })
