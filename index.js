@@ -4,7 +4,12 @@ var app = express()
 var fileUpload = require('express-fileupload')
 const upload = require('./upload')
 app.set('view engine', 'ejs')
-app.use(fileUpload())
+app.use(fileUpload({
+  useTempFiles : true,
+  preserveExtension: true,
+  useTempFiles : true,
+  tempFileDir : '/tmp/'
+}))
 
 app.get('/', function (req, res) {
   res.render('index')
@@ -12,16 +17,18 @@ app.get('/', function (req, res) {
 
 app.post('/upload', function (req, res, next) {
   const file = req.files.file
-  file.mv('./tmp/' + file.name)
 
-  upload('./tmp/' + file.name,
+
+  upload(file.tempFilePath,
     function (uri) {
-      res.send('uri: ' + uri)
+     //upload res.render('video')
     },
     function (error) {
       res.send('error: ' + error)
     }
   )
+
+
 })
 
 app.listen(3000, function () {
