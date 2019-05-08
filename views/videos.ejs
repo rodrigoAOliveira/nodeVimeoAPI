@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,19 +8,9 @@
 </head>
 
 <body>
-   
-   
-        <div id="video"></div>
-        <script src="https://player.vimeo.com/api/player.js"> </script>
-       
-        <script>
-            const options = {
-                width: 800
-            }
-            options.url = '<%= uri %>'
-            const videoPlayer = new Vimeo.Player('video', options);
-        </script>
-    
+
+<iframe src="https://player.vimeo.com<%- uri.replace('videos', 'video') %>" width="1280" height="720" frameborder="0"
+webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 </body>
 
 </html>
