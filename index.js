@@ -20,7 +20,8 @@ app.post('/upload', function (req, res, next) {
 
   upload(file.tempFilePath,
     function (uri) {
-       res.render('videos')
+   
+       res.render('videos',{uri: uri})
   
     },
     function (error) {

@@ -1,23 +1,28 @@
-<!-- public/index.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Upload para vimeo</title>
+    <title>Video Preview</title>
 </head>
 
 <body>
-    <h1>Upload para vimeo</h1>
-    <div id="videos"></div>
-    <script src="https://player.vimeo.com/api/player.js"></script>
+   console.log("to aqui: "+<%= uri %>)
+   
+        <div id="videoPreview"></div>
+        <script src="https://player.vimeo.com/api/player.js"> </script>
+        <script>
+        
+           
+      const options = {
+                url: "https://vimeo.com/${res}",
+                width: 400
+            }
 
 
-    <script>
-
+            const videoPlayer = new Vimeo.Player('videoPreview', options);
+        </script>
     
-        const videoPlayer = new Vimeo.Player('videos', options);
-    </script>
 </body>
 
 </html>
