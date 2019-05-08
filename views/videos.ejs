@@ -9,17 +9,14 @@
 
 <body>
     <h1>Upload para vimeo</h1>
-    <div id="video"></div>
+    <div id="videos"></div>
     <script src="https://player.vimeo.com/api/player.js"></script>
 
 
     <script>
 
-        const options = {
-            url: "https://vimeo.uploadcom/334866214",
-            width: 400
-        }
-        const videoPlayer = new Vimeo.Player('video', options);
+    
+        const videoPlayer = new Vimeo.Player('videos', options);
     </script>
 </body>
 

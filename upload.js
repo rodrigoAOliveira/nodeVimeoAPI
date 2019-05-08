@@ -17,7 +17,7 @@ module.exports = function (file_name, onSuccess, onError) {
   client.upload(
     file_name,
     {
-      'name': 'Hello',
+      'name': file_name,
       'description': 'World'
     },
     function(uri) {

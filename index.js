@@ -5,10 +5,9 @@ var fileUpload = require('express-fileupload')
 const upload = require('./upload')
 app.set('view engine', 'ejs')
 app.use(fileUpload({
-  useTempFiles : true,
+  useTempFiles: true,
   preserveExtension: true,
-  useTempFiles : true,
-  tempFileDir : '/tmp/'
+  tempFileDir: '/tmp/'
 }))
 
 app.get('/', function (req, res) {
@@ -21,7 +20,8 @@ app.post('/upload', function (req, res, next) {
 
   upload(file.tempFilePath,
     function (uri) {
-     //upload res.render('video')
+       res.render('videos')
+  
     },
     function (error) {
       res.send('error: ' + error)
